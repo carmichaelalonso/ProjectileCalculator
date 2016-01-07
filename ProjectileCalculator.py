@@ -6,7 +6,7 @@ Copyright Cameron Carmichael Alonso, 2016. All Rights Reserved.
 """
 
 import sys
-from EquationSolver import sutat2
+from EquationSolver import sutat2, rearrange
 
 ##
 ## Variables:
@@ -28,12 +28,10 @@ def equationFinder(s, R, u, v, a, t, theta):
 	if theta is "":
 		theta = 45
 
-	if s is "":
-		## we need to calculate s
-
-		if (u is not "") and (t is not "") and (a is not ""):
-			# we can use the s = u t + 1/2 a t^2 equation
-			s = sutat2(u, t, a)
+	if (u is not "") and (t is not "") and (a is not "") and (s is ""):
+		## we have u, a and t -> solve for s
+		## we can use the s = u t + 1/2 a t^2 equation
+		s = sutat2(s, u, t, a)
 
 	
 
@@ -41,6 +39,8 @@ def equationFinder(s, R, u, v, a, t, theta):
 ## Entry point
 ##
 if __name__ == "__main__":
+
+	rearrange()
 
 	print "\n\nEnter variables below. Keep blank if no value is to be specifed."
 
