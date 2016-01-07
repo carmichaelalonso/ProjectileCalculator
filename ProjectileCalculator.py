@@ -5,8 +5,8 @@ Copyright Cameron Carmichael Alonso, 2016. All Rights Reserved.
 
 """
 
-import argparse
 import sys
+from EquationSolver import sutat2
 
 ##
 ## Variables:
@@ -16,9 +16,26 @@ import sys
 ## a - acceleration (x, y)
 ## t - time
 ##
+##
+## We need to find:
+##  - s
+##  - t
+##
 
-def calculateInitialVelocity():
-	print "Calculating initial velocity..."
+def equationFinder(s, R, u, v, a, t, theta):
+
+	## set theta to 45 if blank
+	if theta is "":
+		theta = 45
+
+	if s is "":
+		## we need to calculate s
+
+		if (u is not "") and (t is not "") and (a is not ""):
+			# we can use the s = u t + 1/2 a t^2 equation
+			s = sutat2(u, t, a)
+
+	
 
 ##
 ## Entry point
@@ -35,6 +52,9 @@ if __name__ == "__main__":
 	a = raw_input("a (m/s^2) = ")
 	t = raw_input("t (s) = ")
 	theta = raw_input("Theta = ")
+
+	equationFinder(s, R, u, v, a, t, theta)
+
 	
 
 
