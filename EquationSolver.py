@@ -25,10 +25,8 @@ def sutat2(sVal, uVal, tVal, aVal):
 
 		## solve for s and substitute
 		equation = solve((-s+(u*t)+(0.5)*a*t**2), s)
-		equation = Eq(equation[0])
-		equation.subs(t, tFloat)
-		equation.subs(u, uFloat)
-		equation.subs(a, aFloat)
+		equation = equation[0]
+		equation.subs([(t, tFloat), (u, uFloat), (u, uFloat)])
 		print equation
 
 	#s = ((uFloat*tFloat) + power((0.5)*aFloat*tFloat, 2))
