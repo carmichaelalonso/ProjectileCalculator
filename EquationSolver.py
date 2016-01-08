@@ -222,3 +222,74 @@ def vuas(vVal, uVal, aVal, sVal):
 		print "\n\n"
 		
 	return result
+
+def svut2(sVal, vVal, uVal, tVal):
+	## performs equation s = ((v+u)*t)/2
+	print "\nSolving using s = ((v+u)*t)/2"
+
+	## define symbols for equation
+	s, v, u, t = symbols('s v u t')
+
+	##
+	## try and convert values to float
+	## when exception is found, keep string blank
+	##
+	try:
+		sFloat = float(sVal)
+	except:
+		sVal = ""
+
+	try:
+		vFloat = float(vVal)
+	except:
+		vVal = ""
+
+	try:
+		uFloat = float(uVal)
+	except:
+		uVal = ""
+
+	try:
+		tFloat = float(tVal)
+	except:
+		tVal = ""
+
+	##
+	## check which value is to be solved
+	##
+	if sVal is "":
+		## solve for s and substitute
+		print "Solving for s..."
+
+		equation = solve(((-s*(v+u)*t)/2).subs([(v, vFloat), (u, uFloat), (t, tFloat)]), s)
+		result = equation[0]
+		print result
+
+	elif vVal is "":
+		## solve for v and substitute
+		print "Solving for v..."
+
+		equation = solve(((-s*(v+u)*t)/2).subs([(s, sFloat), (u, uFloat), (t, tFloat)]), v)
+		result = equation[0]
+		print result
+
+	elif uVal is "":
+		## solve for u and substitute
+		print "Solving for u..."
+
+		equation = solve(((-s*(v+u)*t)/2).subs([(s, sFloat), (v, vFloat), (t, tFloat)]), u)
+		result = equation[0]
+		print result
+
+	elif tVal is "":
+		## solve for t and substitute
+		print "Solving for t..."
+
+		equation = solve(((-s*(v+u)*t)/2).subs([(s, sFloat), (v, vFloat), (u, uFloat)]), t)
+		result = equation[0]
+		print result
+
+		## blank line to keep tidy
+		print "\n\n"
+		
+	return result
