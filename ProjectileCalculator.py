@@ -14,12 +14,13 @@ Copyright Cameron Carmichael Alonso, 2016. All Rights Reserved.
 ##
 
 import sys
-from EquationSolver import sutat2
+from EquationSolver import sutat2, vuat, vuas, svut2
 
 ##
 ## Constants
 ##
-g = -9.8	## gravity on earth (m/s^2)
+
+g = -9.8	##gravity on earth (m/s^2)
 
 def equationFinder(s, R, u, v, t, theta):
 
@@ -27,10 +28,116 @@ def equationFinder(s, R, u, v, t, theta):
 	if theta is "":
 		theta = 0
 
-	if (u is not "") and (t is not "") and (a is not "") and (s is ""):
-		## we have u, a and t -> solve for s
-		## we can use the s = u t + 1/2 a t^2 equation
-		s = sutat2(s, u, t, g, theta)
+
+	##
+	## Find values for empty variables
+	## Sort through and find correct equation depending on variables available
+	##
+
+	##
+	## height
+	##
+	if (s is ""):
+		## find value of s
+
+		if (v is not "") and (u is not "") and (t is not ""):
+			## use svut2
+			s = svut2(s, v, u, t, theta)
+
+		elif (u is not "") and (v is not "") and (t is ""):
+			## use vuas
+			s = vuas(v, u, g, s, theta)
+
+		elif (u is not "") and (t is not "") and (v is ""):
+			## use sutat2
+			s = sutat2(s, u, t, g, theta)
+
+		else:
+			## missing value, can't continue
+			raise ValueError('Cannot calculate value for "s".')
+
+
+	s = float(s)
+	print ("Height (s -> m) is %d" % s)
+
+	##
+	## velocity
+	##
+	if (v is ""):
+		## find value of v
+
+		if (s is not "") and (u is not "") and (t is not ""):
+			## use svut2
+			v = svut2(s, v, u, t, theta)
+
+		elif (u is not "") and (s is not "") and (t is ""):
+			## use vuas
+			v = vuas(v, u, g, s, theta)
+
+		elif (u is not "") and (t is not "") and (s is ""):
+			## use vuat
+			v = vuat(v, u, g, theta)
+
+		else:
+			## missing value, can't continue
+			raise ValueError('Cannot calculate value for "v".')
+
+	v = float(v)
+	print ("Velocity (v -> m/s) is %d" % v)
+
+	##
+	## initial velocity
+	##
+	if (u is ""):
+		## find value of u
+
+		if (s is not "") and (v is not "") and (t is not ""):
+			## use svut2
+			u = svut2(s, v, u, t, theta)
+
+		elif (v is not "") and (s is not "") and (t is ""):
+			## use vuas
+			u = vuas(v, u, g, s, theta)
+
+		elif (v is not "") and (t is not "") and (s is ""):
+			## use vuat
+			u = vuat(v, u, g, theta)
+
+		elif (s is not "") and (t is not "") and (v is ""):
+			## use sutat2
+			u = sutat2(s, u, t, g, theta)
+
+		else:
+			## missing value, can't continue
+			raise ValueError('Cannot calculate value for "u".')
+
+	u = float(u)
+	print ("Initial velocity (u -> m/s) is %d" % u)
+
+	##
+	## time
+	##
+	if (t is ""):
+		## find value of t
+
+		if (s is not "") and (v is not "") and (u is not ""):
+			## use svut2
+			t = svut2(s, v, u, t, theta)
+
+		elif (v is not "") and (u is not "") and (s is ""):
+			## use vuat
+			t = vuat(v, u, g, theta)
+
+		elif (s is not "") and (u is not "") and (v is ""):
+			## use sutat2
+			t = sutat2(s, u, t, g, theta)
+
+		else:
+			## missing value, can't continue
+			raise ValueError('Cannot calculate value for "t".')
+
+	t = float(t)
+	print ("Time (t -> s) is %d" % t)
 
 	
 ##
@@ -47,5 +154,7 @@ if __name__ == "__main__":
 	v = raw_input("v (m/s) = ")
 	t = raw_input("t (s) = ")
 	theta = raw_input("Theta (from x-axis) = ")
+
+	print "\nSolving...\n\n"
 
 	equationFinder(s, R, u, v, t, theta)
