@@ -163,7 +163,6 @@ def vuat(vVal, uVal, aVal, tVal, theta):
 		
 	return result
 
-
 def vuas(vVal, uVal, aVal, sVal, theta):
 	## performs equation v^2 = u^2 + 2as
 	print "\nSolving using v^2 = u^2 + 2as"
@@ -273,7 +272,7 @@ def svut2(sVal, vVal, uVal, tVal, theta):
 
 		## multiply by cos(theta)
 		uFloat *= cos(theta)
-		
+
 	except:
 		uVal = ""
 
