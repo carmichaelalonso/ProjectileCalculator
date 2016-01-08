@@ -8,7 +8,7 @@ Copyright Cameron Carmichael Alonso, 2016. All Rights Reserved.
 from mpmath import *
 from sympy import *
 
-def sutat2(sVal, uVal, tVal, aVal):
+def sutat2(sVal, uVal, tVal, aVal, theta):
 	## performs equation s = u t + 1/2 a t^2
 	print "\nSolving using s = u t + 1/2 a t^2"
 
@@ -26,6 +26,10 @@ def sutat2(sVal, uVal, tVal, aVal):
 
 	try:
 		uFloat = float(uVal)
+
+		## multiply by cos(theta)
+		uFloat *= cos(theta)
+
 	except:
 		uVal = ""
 
@@ -80,7 +84,7 @@ def sutat2(sVal, uVal, tVal, aVal):
 
 	return result
 
-def vuat(vVal, uVal, aVal, tVal):
+def vuat(vVal, uVal, aVal, tVal, theta):
 	## performs equation v = u + at
 	print "\nSolving using v = u + a t"
 
@@ -93,11 +97,19 @@ def vuat(vVal, uVal, aVal, tVal):
 	##
 	try:
 		vFloat = float(vVal)
+
+		## multiply by cos(theta)
+		vFloat *= cos(theta)
+
 	except:
 		vVal = ""
 
 	try:
 		uFloat = float(uVal)
+
+		## multiply by cos(theta)
+		uFloat *= cos(theta)
+
 	except:
 		uVal = ""
 
@@ -152,7 +164,7 @@ def vuat(vVal, uVal, aVal, tVal):
 	return result
 
 
-def vuas(vVal, uVal, aVal, sVal):
+def vuas(vVal, uVal, aVal, sVal, theta):
 	## performs equation v^2 = u^2 + 2as
 	print "\nSolving using v^2 = u^2 + 2as"
 
@@ -165,11 +177,19 @@ def vuas(vVal, uVal, aVal, sVal):
 	##
 	try:
 		vFloat = float(vVal)
+
+		## multiply by cos(theta)
+		vFloat *= cos(theta)
+
 	except:
 		vVal = ""
 
 	try:
 		uFloat = float(uVal)
+
+		## multiply by cos(theta)
+		uFloat *= cos(theta)
+
 	except:
 		uVal = ""
 
@@ -223,7 +243,7 @@ def vuas(vVal, uVal, aVal, sVal):
 		
 	return result
 
-def svut2(sVal, vVal, uVal, tVal):
+def svut2(sVal, vVal, uVal, tVal, theta):
 	## performs equation s = ((v+u)*t)/2
 	print "\nSolving using s = ((v+u)*t)/2"
 
@@ -241,11 +261,19 @@ def svut2(sVal, vVal, uVal, tVal):
 
 	try:
 		vFloat = float(vVal)
+
+		## multiply by cos(theta)
+		vFloat *= cos(theta)
+
 	except:
 		vVal = ""
 
 	try:
 		uFloat = float(uVal)
+
+		## multiply by cos(theta)
+		uFloat *= cos(theta)
+		
 	except:
 		uVal = ""
 
