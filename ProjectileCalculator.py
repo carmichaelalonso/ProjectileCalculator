@@ -6,7 +6,7 @@ Copyright Cameron Carmichael Alonso, 2016. All Rights Reserved.
 """
 
 import sys
-from EquationSolver import sutat2, rearrange
+from EquationSolver import sutat2
 
 ##
 ## Variables:
@@ -39,8 +39,6 @@ def equationFinder(s, R, u, v, a, t, theta):
 ## Entry point
 ##
 if __name__ == "__main__":
-
-	rearrange()
 
 	print "\n\nEnter variables below. Keep blank if no value is to be specifed."
 
