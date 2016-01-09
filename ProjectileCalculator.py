@@ -20,27 +20,49 @@ from EquationSolver import sutat2, vuat, vuas, svut2
 ## Constants
 ##
 
-g = 9.8	##gravity on earth (m/s^2)
+g = 9.8	## gravity on earth (m/s^2)
+tDenomenator = 100 ## how many times to divide (t) by
 
 def simulate(s, R, u, v, t, theta):
 
-	## set theta to 0 if blank
+	## set (theta) to 0 if blank
 	if theta is "":
 		theta = 0
 
+	## if (s) is blank, assume launch height is 0
+	if s is "":
+		s = 1
+
 
 	##
-	## Find values for empty variables
-	## Sort through and find correct equation depending on variables available
+	## Check to see if we have a (t) value
 	##
 
+	tVal = findTime(t, s, u, v, theta)
 
+	##
+	## Divide time by tDenomenator
+	##
 
+	tDelta = (tVal / tDenomenator)
+	print ("Time delta is %.5f\n\n" % tDelta)
+
+	## loop through adding tDelta each time
+	for i in range(0,tDenomenator):
+		currentT = (tDelta * i)
+
+		##
+		## For each time, find corresponding (s)
+		## This is where (v) = "" (no need to calc (v) just yet)
+		##
+		sVal = findHeight(s, u, "", currentT, theta)
+
+		print ("%.3f, %.3f" % (currentT, sVal))
 
 ##
 ## time
 ##
-def findTime(s, u, v, theta):
+def findTime(t, s, u, v, theta):
 	if (t is ""):
 		## find value of t
 
@@ -60,19 +82,17 @@ def findTime(s, u, v, theta):
 			## missing value, can't continue
 			raise ValueError('Cannot calculate value for "t".')
 
-		tVal = float(tVal)
-
 	else:
 		tVal = float(t)
 
 	
-	print ("Time (t -> s) is %d" % tVal)
+	print ("Time (t -> s) is %.10f" % tVal)
 	return tVal
 
 ##
 ## height
 ##
-def findHeight(u, v, t, theta):
+def findHeight(s, u, v, t, theta):
 	if (s is ""):
 		## find value of s
 
@@ -95,15 +115,15 @@ def findHeight(u, v, t, theta):
 		sVal = float(sVal)
 
 	else:
-		sVal = float(sVal)
+		sVal = float(s)
 
-	print ("Height (s -> m) is %d" % sVal)
+	print ("Height (s -> m) is %.10f" % sVal)
 	return sVal
 
 ##
 ## velocity
 ##
-def findVelocity(s, u, t, theta):
+def findVelocity(v, s, u, t, theta):
 	if (v is ""):
 		## find value of v
 
@@ -128,7 +148,7 @@ def findVelocity(s, u, t, theta):
 	else:
 		vVal = float(v)
 
-	print ("Velocity (v -> m/s) is %d" % vVal)
+	print ("Velocity (v -> m/s) is %.10f" % vVal)
 	return vVal
 	
 
@@ -164,7 +184,7 @@ def findInitialVelocity(s, v, t, theta):
 	else:
 		uVal = float(u)
 
-	print ("Initial velocity (u -> m/s) is %d" % uVal)
+	print ("Initial velocity (u -> m/s) is %.10f" % uVal)
 	return uVal
 
 ##
@@ -176,7 +196,7 @@ if __name__ == "__main__":
 
 	## get variables
 	s = raw_input("s (m) = ")
-	R = raw_input("R (m) = ")
+	R = 0 ##R = raw_input("R (m) = ")
 	u = raw_input("u (m/s) = ")
 	v = raw_input("v (m/s) = ")
 	t = raw_input("t (s) = ")

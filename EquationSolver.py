@@ -65,18 +65,18 @@ def sutat2(sVal, uVal, tVal, aVal, theta):
 		## solve for t and substitute
 		print "Solving for t..."
 
-		equation = solve((-s+(u*t)+(0.5)*a*t**2).subs([(s, tFloat), (u, uFloat), (a, aFloat)]), t)
+		equation = solve((-s+(u*t)+(0.5)*a*t**2).subs([(s, sFloat), (u, uFloat), (a, aFloat)]), t)
 		result = equation[0]
 
 	elif aVal is "":
 		## solve for a and substitute
 		print "Solving for a..."
 
-		equation = solve((-s+(u*t)+(0.5)*a*t**2).subs([(s, tFloat), (u, uFloat), (t, tFloat)]), a)
+		equation = solve((-s+(u*t)+(0.5)*a*t**2).subs([(s, sFloat), (u, uFloat), (t, tFloat)]), a)
 		result = equation[0]
 
 		## blank line to keep tidy
-		print "\n\n"
+		print "\n"
 
 	return result
  
@@ -151,7 +151,7 @@ def vuat(vVal, uVal, aVal, tVal, theta):
 		result = equation[0]
 
 		## blank line to keep tidy
-		print "\n\n"
+		print "\n"
 		
 	return result
 
@@ -226,7 +226,7 @@ def vuas(vVal, uVal, aVal, sVal, theta):
 		result = equation[0]
 
 		## blank line to keep tidy
-		print "\n\n"
+		print "\n"
 		
 	return result
 
@@ -297,10 +297,11 @@ def svut2(sVal, vVal, uVal, tVal, theta):
 		## solve for t and substitute
 		print "Solving for t..."
 
-		equation = solve(((-s*(v+u)*t)/2).subs([(s, sFloat), (v, vFloat), (u, uFloat)]), t)
+		equation = solve(Eq(s, ((v+u)*t)/2).subs([(s, sFloat), (v, vFloat), (u, uFloat)]), t)
+		print equation
 		result = equation[0]
 
 		## blank line to keep tidy
-		print "\n\n"
+		print "\n"
 		
 	return result
