@@ -20,7 +20,7 @@ from EquationSolver import sutat2, vuat, vuas, svut2
 ## Constants
 ##
 
-g = 9.8	## gravity on earth (m/s^2)
+g = -9.8	## gravity on earth (m/s^2)
 tDenomenator = 100 ## how many times to divide (t) by
 
 def simulate(s, R, u, v, t, theta):
