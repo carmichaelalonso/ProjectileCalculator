@@ -15,6 +15,7 @@ Copyright Cameron Carmichael Alonso, 2016. All Rights Reserved.
 
 import sys
 from EquationSolver import sutat2, vuat, vuas, svut2
+from Grapher import PlotGraph
 
 ##
 ## Constants
@@ -47,17 +48,24 @@ def simulate(s, R, u, v, t, theta):
 	tDelta = (tVal / tDenomenator)
 	print ("Time delta is %.5f\n\n" % tDelta)
 
+	xValues = []
+	yValues = []
+
 	## loop through adding tDelta each time
 	for i in range(0,tDenomenator):
 		currentT = (tDelta * i)
+		xValues.append(currentT)
 
 		##
 		## For each time, find corresponding (s)
 		## This is where (v) = "" (no need to calc (v) just yet)
 		##
 		sVal = findHeight(s, u, "", currentT, theta)
+		yValues.append(sVal)
 
 		print ("%.3f, %.3f" % (currentT, sVal))
+
+	PlotGraph(xValues, yValues)
 
 ##
 ## time
