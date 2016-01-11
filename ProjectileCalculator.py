@@ -21,7 +21,7 @@ from Grapher import PlotGraph
 ## Constants
 ##
 
-g = -9.8	## gravity on earth (m/s^2)
+g = 9.8	## gravity on earth (m/s^2)
 tDenomenator = 100 ## how many times to divide (t) by
 
 def simulate(s, R, u, v, t, theta):
@@ -30,9 +30,6 @@ def simulate(s, R, u, v, t, theta):
 	if theta is "":
 		theta = 0
 
-	## if (s) is blank, assume launch height is 0
-	if s is "":
-		s = 1
 
 
 	##
