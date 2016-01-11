@@ -1,6 +1,6 @@
 """
 
-Grapher.py
+Interface.py
 Copyright Cameron Carmichael Alonso, 2016. All Rights Reserved.
 
 """

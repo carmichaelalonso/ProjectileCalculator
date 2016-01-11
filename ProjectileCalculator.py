@@ -15,7 +15,7 @@ Copyright Cameron Carmichael Alonso, 2016. All Rights Reserved.
 
 import sys
 from EquationSolver import sutat2, vuat, vuas, svut2
-from Grapher import PlotGraph
+from Interface import PlotGraph
 
 ##
 ## Constants
@@ -37,6 +37,7 @@ def simulate(s, R, u, v, t, theta):
 	##
 
 	tVal = findTime(t, s, u, v, theta)
+	t = str(tVal)
 
 	##
 	## Divide time by tDenomenator
