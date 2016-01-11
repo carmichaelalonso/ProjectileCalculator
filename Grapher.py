@@ -12,7 +12,7 @@ from matplotlib.figure import Figure
 
 from Tkinter import *
 
-def PlotGraph(xValues, yValues):
+def PlotGraph(xValues, yValues, labelString):
     ## setup window
     root = Tk()
     root.wm_title("Graphed Projectile")
@@ -22,7 +22,7 @@ def PlotGraph(xValues, yValues):
     frame.pack()
 
 
-    label = Label(root, text="Graph of Projectile", font=("Verdana", 12))
+    label = Label(root, text=labelString, font=("Verdana", 12))
     label.pack(pady=10,padx=10)
 
     f = Figure(figsize=(5,5), dpi=100)

@@ -65,7 +65,9 @@ def simulate(s, R, u, v, t, theta):
 
 		print ("%.3f, %.3f" % (currentT, sVal))
 
-	PlotGraph(xValues, yValues)
+
+	labelString = ("s = %s; u = %s; v = %s; t = %s; theta = %s" % (s, u, v, t, theta))
+	PlotGraph(xValues, yValues, labelString)
 
 ##
 ## time
