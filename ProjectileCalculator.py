@@ -58,7 +58,7 @@ def simulate(s, R, u, v, t, theta):
 		## For each time, find corresponding (s)
 		## This is where (v) = "" (no need to calc (v) just yet)
 		##
-		sVal = findHeight(s, u, "", currentT, theta)
+		sVal = findHeight("", u, "", currentT, theta)
 		yValues.append(sVal)
 
 		print ("%.3f, %.3f" % (currentT, sVal))
@@ -102,29 +102,21 @@ def findTime(t, s, u, v, theta):
 ## height
 ##
 def findHeight(s, u, v, t, theta):
-	if (s is ""):
-		## find value of s
+	## find value of s
 
-		if (v is not "") and (u is not "") and (t is not ""):
-			## use svut2
-			sVal = svut2(s, v, u, t, theta)
+	if (v is not "") and (u is not "") and (t is not ""):
+		## use svut2
+		sVal = svut2(s, v, u, t, theta)
 
-		elif (u is not "") and (v is not "") and (t is ""):
-			## use vuas
-			sVal = vuas(v, u, g, s, theta)
+	elif (u is not "") and (v is not "") and (t is ""):
+		## use vuas
+		sVal = vuas(v, u, g, s, theta)
 
-		elif (u is not "") and (t is not "") and (v is ""):
-			## use sutat2
-			sVal = sutat2(s, u, t, g, theta)
-
-		else:
-			## missing value, can't continue
-			raise ValueError('Cannot calculate value for "s".')
+	elif (u is not "") and (t is not "") and (v is ""):
+		## use sutat2
+		sVal = sutat2(s, u, t, g, theta)
 
 		sVal = float(sVal)
-
-	else:
-		sVal = float(s)
 
 	print ("Height (s -> m) is %.10f" % sVal)
 	return sVal

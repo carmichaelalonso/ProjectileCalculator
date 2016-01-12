@@ -58,11 +58,13 @@ def DataGrid():
     table.createTableFrame()
 
     model = TableModel()
-    table = TableCanvas(frame, model=model)
 
     ## sample data
     sDict = {'rec1': {'col1': 99.88, 'col2': 108.79, 'label': 'rec1'},'rec2': {'col1': 99.88, 'col2': 108.79, 'label': 'rec2'},} 
     model.importDict(sDict)
+
+    table = TableCanvas(frame, model=model)
+
     #table.redrawTable()
 
     dataGrid.mainloop()
