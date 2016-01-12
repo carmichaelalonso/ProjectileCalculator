@@ -15,13 +15,13 @@ Copyright Cameron Carmichael Alonso, 2016. All Rights Reserved.
 
 import sys
 from EquationSolver import sutat2, vuat, vuas, svut2
-from Interface import PlotGraph
+from Interface import PlotGraph, DataGrid
 
 ##
 ## Constants
 ##
 
-g = 9.8	## gravity on earth (m/s^2)
+g = -9.8	## gravity on earth (m/s^2)
 tDenomenator = 100 ## how many times to divide (t) by
 
 def simulate(s, R, u, v, t, theta):
@@ -66,6 +66,7 @@ def simulate(s, R, u, v, t, theta):
 
 	labelString = ("s = %s; u = %s; v = %s; t = %s; theta = %s" % (s, u, v, t, theta))
 	PlotGraph(xValues, yValues, labelString)
+	
 
 ##
 ## time
