@@ -31,7 +31,6 @@ def simulate(s, R, u, v, t, theta):
 		theta = 0
 
 
-
 	##
 	## Check to see if we have a (t) value
 	##

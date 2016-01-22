@@ -22,7 +22,6 @@ def PlotGraph(xValues, yValues, labelString):
     frame = Frame(root)
     frame.pack()
 
-
     label = Label(root, text=labelString, font=("Verdana", 12))
     label.pack(pady=10,padx=10)
 
@@ -38,11 +37,11 @@ def PlotGraph(xValues, yValues, labelString):
     toolbar.update()
     canvas._tkcanvas.pack(side=TOP, fill=BOTH, expand=True)
 
-    DataGrid()
+    DataGrid(xValues, yValues)
 
     root.mainloop()
 
-def DataGrid():
+def DataGrid(xValues, yValues):
     ## setup window
     dataGrid = Tk()
     dataGrid.wm_title("Data")
@@ -51,20 +50,26 @@ def DataGrid():
     frame = Frame(dataGrid)
     frame.pack()
 
-    label = Label(dataGrid, text="DataGrid", font=("Verdana", 12))
-    label.pack(pady=10,padx=10)
+    label = Label(dataGrid, text=("Showing %.0f data points" % len(xValues)), font=("Verdana", 12))
+    label.pack(pady=5,padx=10)
 
-    table = TableCanvas(frame)
-    table.createTableFrame()
+    dataDict = {}
+
+    ## iterate through time
+    for i in range(0, len(xValues)):
+        xVal = ("%.2f" % float(xValues[i]))
+        yVal = ("%.2f" % float(yValues[i]))
+        dataDict[xVal] = {"Time (s)":xVal, "Height (m)":yVal}
+
 
     model = TableModel()
+    model.importDict(dataDict)
+    model.moveColumn(model.getColumnIndex('Time (s)'), 0)
 
-    ## sample data
-    sDict = {'rec1': {'col1': 99.88, 'col2': 108.79, 'label': 'rec1'},'rec2': {'col1': 99.88, 'col2': 108.79, 'label': 'rec2'},} 
-    model.importDict(sDict)
+    table = TableCanvas(frame, model=model,editable=False)
+    table.createTableFrame()
 
-    table = TableCanvas(frame, model=model)
-
-    #table.redrawTable()
+    ## order by time
+    table.sortTable(columnName='Time (s)')
 
     dataGrid.mainloop()
