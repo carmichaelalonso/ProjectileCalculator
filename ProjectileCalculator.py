@@ -63,6 +63,9 @@ def simulate(s, R, u, v, t, theta):
 		print ("%.3f, %.3f" % (currentT, sVal))
 
 
+	## make Y values positive for neater graphing
+	yValues = MakeHeightPositive(yValues)
+
 	labelString = ("s = %s; u = %s; v = %s; t = %s; theta = %s" % (s, u, v, t, theta))
 	PlotGraph(xValues, yValues, labelString)
 	
@@ -186,6 +189,18 @@ def findInitialVelocity(s, v, t, theta):
 
 	print ("Initial velocity (u -> m/s) is %.10f" % uVal)
 	return uVal
+
+def MakeHeightPositive(yValues):
+	minVal = min(yValues)
+
+	print "Adding minVal " + str(minVal)
+
+	valuesToReturn = []
+
+	for i in range(0, len(yValues)):
+		valuesToReturn.append(yValues[i] - minVal)
+
+	return valuesToReturn
 
 ##
 ## Entry point
